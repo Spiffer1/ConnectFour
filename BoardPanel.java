@@ -21,7 +21,7 @@ public class BoardPanel extends JPanel
         setBackground(lightBlue);
         grid = new Gameboard(lightBlue);
         mouseX = grid.getGridX() + grid.getSpacing() + grid.getDiameter() / 2;
-        topCircle = new Circle(mouseX, 70, grid.getDiameter(), Color.red); // player 1 is red; player 2 is yellow
+        topCircle = new Circle(mouseX, grid.getGridY() - grid.getDiameter() / 2 - grid.getSpacing(), grid.getDiameter(), Color.red); // player 1 is red; player 2 is yellow
         PanelListener myListener = new PanelListener();
         addMouseMotionListener(myListener);
         addMouseListener(myListener);

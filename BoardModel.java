@@ -20,6 +20,25 @@ public class BoardModel
         movesCompleted = 0;
     }
 
+    public BoardModel(BoardModel original)      // Constructs a copy of the original board and its state
+    {
+        board = new int[6][7];
+        for (int i = 0; i < 6; i++)
+        {
+            for (int j = 0; j < 7; j++)
+            {
+                board[i][j] = original.getColor(i, j);
+            }
+        }
+        whoseTurn = original.getWhoseTurn();
+        moveRecord = new int[42];
+        movesCompleted = original.getMovesCompleted();
+        for (int move = 0; move < movesCompleted; move++)
+        {
+            moveRecord[move] = original.getMove(move);
+        }
+    }
+
     private void switchTurn()
     {
         if (whoseTurn == 1)
@@ -105,19 +124,9 @@ public class BoardModel
         return moveRecord[moveNum];
     }
 
-    // Clones board and whoseTurn, but leaves the clone's moveRecord[] and movesCompleted set to 0's.
-    public BoardModel clone()
+    public int getMovesCompleted()
     {
-        BoardModel clone = new BoardModel();
-        for (int i = 0; i < 6; i++)
-        {
-            for (int j = 0; j < 7; j++)
-            {
-                clone.setColor(i, j, board[i][j]);
-            }
-        }
-        clone.setWhoseTurn(whoseTurn);
-        return clone;
+        return movesCompleted;
     }
 
     // Find winner by calculating product of four squares in a row. If all are 1's, product 

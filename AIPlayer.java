@@ -2,7 +2,8 @@ public class AIPlayer
 {
     public int chooseMove(BoardModel board)
     {
-        BoardModel clone = board.clone();
+        BoardModel copy = new BoardModel(board);
+        //BoardModel clone = board.clone();
         int[][][] value = new int[7][7][7];  // how good the board is after I play, he plays, I play (depth 3)
         /*
          * A large positive value[][][] number indicates that the play is good for me (the computer); a big 
@@ -31,28 +32,28 @@ public class AIPlayer
         
         int bestChoice = 0;
         // verify that bestChoice is a valid column; i.e. that there is at least one open hole in that column
-        while (clone.getColor(5, bestChoice) != 0)
+        while (copy.getColor(5, bestChoice) != 0)
         {
             bestChoice++;
         }
         for (int d1 = 0; d1 < 7; d1++)
         {
-            int pickedRow = clone.pickColumn(d1);  // if there are no more spaces in that row, pickedRow will be -1
+            int pickedRow = copy.pickColumn(d1);  // if there are no more spaces in that row, pickedRow will be -1
             if (pickedRow >= 0)     // else, if pickedRow = -1, then nothing happens in this iteration and d1 is increased
             {
-                System.out.println(clone);
-                if (clone.evaluateBoard() == 1000)  // if next move wins, don't bother looking further
+                System.out.println(copy);
+                if (copy.evaluateBoard() == 1000)  // if next move wins, don't bother looking further
                 {
                     bestChoice = d1;
                     break;
                 }
                 for (int d2 = 0; d2 < 7; d2++)
                 {
-                    pickedRow = clone.pickColumn(d2);
+                    pickedRow = copy.pickColumn(d2);
                     if (pickedRow >= 0)
                     {
-                        System.out.println(clone);
-                        if (clone.evaluateBoard() == -1001) // if opponent's next move would win... 
+                        System.out.println(copy);
+                        if (copy.evaluateBoard() == -1001) // if opponent's next move would win... 
                         {
                             value[d1][0][0] = -1001;        // ...it's value is very low...
                         }
@@ -60,18 +61,18 @@ public class AIPlayer
                         {
                             for (int d3 = 0; d3 < 7; d3++)
                             {
-                                pickedRow = clone.pickColumn(d3);
+                                pickedRow = copy.pickColumn(d3);
                                 if (pickedRow >= 0)
                                 {
-                                    System.out.println(clone);
-                                    value[d1][d2][d3] = clone.evaluateBoard();
+                                    System.out.println(copy);
+                                    value[d1][d2][d3] = copy.evaluateBoard();
                                     System.out.println("Value[" + d1 + "][" + d2 + "][" + d3 + "] = " + value[d1][d2][d3]);
                                     // Put your best 2nd move's value into value[d1][d2][0]
                                     if (value[d1][d2][d3] > value[d1][d2][0])
                                     {
                                         value[d1][d2][0] = value[d1][d2][d3];
                                     }
-                                    clone.undoMove();
+                                    copy.undoMove();
                                 }
                             }
                             // put oponent's best move's value into value[d1][0][0]
@@ -80,7 +81,7 @@ public class AIPlayer
                                 value[d1][0][0] = value[d1][d2][0];
                             }
                         }
-                        clone.undoMove();
+                        copy.undoMove();
                     }
                 }
                 if (value[d1][0][0] > value[0][0][0])
@@ -89,7 +90,7 @@ public class AIPlayer
                     value[0][0][0] = value[d1][0][0];
                 }
                 System.out.println("Value: " + value[0][0][0]);
-                clone.undoMove();
+                copy.undoMove();
             }
         }
         return bestChoice;

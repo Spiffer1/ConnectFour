@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=xPos\ yPos\ diam\ color_
+comment0.target=Circle(int,\ int,\ int,\ java.awt.Color)
+comment1.params=g
+comment1.target=void\ draw(java.awt.Graphics)
+comment2.params=xPos\ yPos
+comment2.target=void\ move(int,\ int)
+comment3.params=color_
+comment3.target=void\ setColor(java.awt.Color)
+comment4.params=xPos
+comment4.target=void\ setX(int)
+comment5.params=
+comment5.target=int\ getX()
+numComments=6

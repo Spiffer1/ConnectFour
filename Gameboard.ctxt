@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.params=backColor
+comment0.target=Gameboard(java.awt.Color)
+comment1.params=g
+comment1.target=void\ draw(java.awt.Graphics)
+comment2.params=
+comment2.target=int\ getGridWidth()
+comment3.params=
+comment3.target=int\ getGridHeight()
+comment4.params=
+comment4.target=int\ getGridX()
+comment5.params=
+comment5.target=int\ getGridY()
+comment6.params=
+comment6.target=int\ getDiameter()
+comment7.params=
+comment7.target=int\ getSpacing()
+comment8.params=mouseX
+comment8.target=int\ getColumn(int)
+comment9.params=row\ col\ color
+comment9.target=void\ setHoleColor(int,\ int,\ java.awt.Color)
+numComments=10

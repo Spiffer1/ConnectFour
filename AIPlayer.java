@@ -38,7 +38,9 @@ public class AIPlayer
         }
         for (int d1 = 0; d1 < 7; d1++)
         {
-            int pickedRow = copy.pickColumn(d1);  // if there are no more spaces in that row, pickedRow will be -1
+            int pickedRow = copy.pickColumn(d1);
+            copy.switchTurn();
+            // if there are no more spaces in that row, pickedRow will be -1
             if (pickedRow >= 0)     // else, if pickedRow = -1, then nothing happens in this iteration and d1 is increased
             {
                 System.out.println(copy);
@@ -50,6 +52,7 @@ public class AIPlayer
                 for (int d2 = 0; d2 < 7; d2++)
                 {
                     pickedRow = copy.pickColumn(d2);
+                    copy.switchTurn();
                     if (pickedRow >= 0)
                     {
                         System.out.println(copy);
@@ -62,6 +65,7 @@ public class AIPlayer
                             for (int d3 = 0; d3 < 7; d3++)
                             {
                                 pickedRow = copy.pickColumn(d3);
+                                copy.switchTurn();
                                 if (pickedRow >= 0)
                                 {
                                     System.out.println(copy);

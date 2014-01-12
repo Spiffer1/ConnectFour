@@ -2,7 +2,8 @@ import java.awt.*;
 
 public class Circle
 {
-    private int x, y, diameter;
+    protected int x;    // also used by AICircle
+    private int y, diameter;
     private Color color;
     
     public Circle(int xPos, int yPos, int diam, Color color_)

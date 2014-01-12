@@ -39,7 +39,7 @@ public class BoardModel
         }
     }
 
-    private void switchTurn()
+    public void switchTurn()
     {
         if (whoseTurn == 1)
         {
@@ -72,7 +72,6 @@ public class BoardModel
                     System.out.print(moveRecord[move] + "  ");
                 }
                 System.out.println();
-                switchTurn();
                 return row;
             }
         }

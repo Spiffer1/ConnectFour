@@ -70,6 +70,10 @@ public class Gameboard
         column = Math.min(column, 6);
         return column;
     }
+    public int getXFromCol(int col)
+    {
+        return gridX + col * (spacing + diameter);
+    }
     public void setHoleColor(int row, int col, Color color)
     {
         holes[row][col].setColor(color);

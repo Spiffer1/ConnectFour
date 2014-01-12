@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=xPos\ yPos\ diam\ color_
+comment0.target=AICircle(int,\ int,\ int,\ java.awt.Color)
+comment1.params=
+comment1.target=void\ move()
+comment2.params=col
+comment2.target=void\ setTargetColumn(int)
+comment3.params=
+comment3.target=int\ getTargetColumn()
+numComments=4

@@ -71,13 +71,10 @@ public class BoardPanel extends JPanel
                 System.out.println("Computer chooses: " + column);
                 aiTopCircle.setX(grid.getGridX() + grid.getSpacing() + grid.getDiameter() / 2);
                 aiTopCircle.setTargetColumn(column);
-                timer.start();  // This starts animation of moving aiTopCircle. When the aiTopCircle reaches
-                // target column, the Timer is stopped, pickColumn() is called, and switchTurn() is called.
-                if (board.findWinner() == 1)
-                {
-                    gameWon = true;
-                    System.out.println("Game Over! Computer wins!");
-                }
+                timer.start();
+                // This starts animation of moving aiTopCircle. When the aiTopCircle reaches
+                // target column, the Timer is stopped, pickColumn() is called, findWinner is tested, 
+                // and switchTurn is called.
             }
         }
 
@@ -104,9 +101,14 @@ public class BoardPanel extends JPanel
             int column = aiTopCircle.getTargetColumn();
             if ( x >= grid.getXFromCol(column) )
             {
-                timer.stop();              
+                timer.stop();   
                 int row = board.pickColumn(column);
                 grid.setHoleColor(row, column, Color.yellow);
+                if (board.findWinner() == 1)
+                {
+                    gameWon = true;
+                    System.out.println("Game Over! Computer wins!");
+                }
                 board.switchTurn();
             }
             repaint();

@@ -66,12 +66,6 @@ public class BoardModel
                 board [row][col] = whoseTurn;
                 moveRecord[movesCompleted] = col;
                 movesCompleted++;
-                System.out.print("Moves: ");
-                for (int move = 0; move < movesCompleted; move++)
-                {
-                    System.out.print(moveRecord[move] + "  ");
-                }
-                System.out.println();
                 return row;
             }
         }
@@ -81,7 +75,6 @@ public class BoardModel
     public void undoMove()
     {
         // Determine the coordinates of the last move made (lastRow, lastColumn)
-
         int lastColumn = moveRecord[movesCompleted - 1];
         int lastRow = 5;
         while (lastRow >= 0 && board[lastRow][lastColumn] == 0)

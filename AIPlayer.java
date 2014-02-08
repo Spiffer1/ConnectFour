@@ -3,7 +3,6 @@ public class AIPlayer
     public int chooseMove(BoardModel board)
     {
         BoardModel copy = new BoardModel(board);
-        //BoardModel clone = board.clone();
         int[][][] value = new int[7][7][7];  // how good the board is after I play, he plays, I play (depth 3)
         /*
          * A large positive value[][][] number indicates that the play is good for me (the computer); a big 
@@ -29,7 +28,7 @@ public class AIPlayer
             value[i][0][0] = 10000;
         }
         value[0][0][0] = -10000;
-        
+
         int bestChoice = 0;
         // verify that bestChoice is a valid column; i.e. that there is at least one open hole in that column
         while (copy.getColor(5, bestChoice) != 0)
@@ -39,11 +38,10 @@ public class AIPlayer
         for (int d1 = 0; d1 < 7; d1++)
         {
             int pickedRow = copy.pickColumn(d1);
-            copy.switchTurn();
             // if there are no more spaces in that row, pickedRow will be -1
             if (pickedRow >= 0)     // else, if pickedRow = -1, then nothing happens in this iteration and d1 is increased
             {
-                System.out.println(copy);
+                copy.switchTurn();
                 if (copy.evaluateBoard() == 1000)  // if next move wins, don't bother looking further
                 {
                     bestChoice = d1;
@@ -52,10 +50,9 @@ public class AIPlayer
                 for (int d2 = 0; d2 < 7; d2++)
                 {
                     pickedRow = copy.pickColumn(d2);
-                    copy.switchTurn();
                     if (pickedRow >= 0)
                     {
-                        System.out.println(copy);
+                        copy.switchTurn();
                         if (copy.evaluateBoard() == -1001) // if opponent's next move would win... 
                         {
                             value[d1][0][0] = -1001;        // ...it's value is very low...
@@ -65,9 +62,9 @@ public class AIPlayer
                             for (int d3 = 0; d3 < 7; d3++)
                             {
                                 pickedRow = copy.pickColumn(d3);
-                                copy.switchTurn();
                                 if (pickedRow >= 0)
                                 {
+                                    copy.switchTurn();
                                     System.out.println(copy);
                                     value[d1][d2][d3] = copy.evaluateBoard();
                                     System.out.println("Value[" + d1 + "][" + d2 + "][" + d3 + "] = " + value[d1][d2][d3]);
